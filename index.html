@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Money</title>
+<meta name="description" content="Personal money and net worth tracker">
+<meta name="theme-color" content="#F2F4F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A1119" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Money">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+
+<section class="gate" id="setup" hidden>
+  <div class="gate-card">
+    <img src="icons/icon-192.png" alt="">
+    <h1>Almost there</h1>
+    <p>Your Firebase settings are missing from <code>firebase-config.js</code>.</p>
+  </div>
+</section>
+
+<section class="gate" id="auth" hidden>
+  <form class="gate-card" id="authForm" novalidate>
+    <img src="icons/icon-192.png" alt="">
+    <h1>Know where every shilling is.</h1>
+    <p>Sign in to see your money on any device.</p>
+    <label class="f">Email <input type="email" id="aEmail" autocomplete="email" required></label>
+    <label class="f">Password <input type="password" id="aPass" autocomplete="current-password" minlength="6" required></label>
+    <p class="err" id="aErr" hidden></p>
+    <button type="submit" class="btn">Sign in</button>
+    <button type="button" class="btn ghost" id="signUpBtn">Create account</button>
+    <button type="button" class="link" id="resetBtn">Forgot password?</button>
+  </form>
+</section>
+
+<section class="gate" id="onboard" hidden>
+  <form class="gate-card wide" id="onboardForm" novalidate>
+    <h1>Start with what you have.</h1>
+    <p>Add each place you keep money and what's in it right now. Check your M-Pesa and bank apps for the exact figure; it's what keeps everything accurate from here on.</p>
+    <div id="obRows" class="ob-rows"></div>
+    <button type="button" class="btn ghost" id="obAdd">Add another account</button>
+    <p class="err" id="obErr" hidden></p>
+    <button type="submit" class="btn">Start tracking</button>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <main class="shell" id="view"></main>
+  <nav class="tabbar" aria-label="Main">
+    <button data-tab="home" aria-current="page"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></button>
+    <button data-tab="activity"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Activity</span></button>
+    <button class="fab" id="fab" aria-label="Record a transaction"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+    <button data-tab="plan"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></svg><span>Plan</span></button>
+    <button data-tab="insights"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Insights</span></button>
+  </nav>
+</div>
+
+<dialog id="sheet" aria-labelledby="sheetTitle"><div id="sheetBody"></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script type="module" src="app.js?v=2"></script>
+</body>
+</html>
